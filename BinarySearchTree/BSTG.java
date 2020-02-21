@@ -2,7 +2,7 @@ import java.util.*;
 
 /**
 	@Autor: Brahian Velazquez Tellez
-	Implement Binary Search Tree for Objects that can be compare
+	Implement Binary Search Tree for Objects that can be compared
 */
 
 public class BSTG <T extends Comparable<T>> {
@@ -254,7 +254,7 @@ public class BSTG <T extends Comparable<T>> {
 		 tree.add(10);
 		 
 		 System.out.println(" In Order");
-		
+		 System.out.println("Height: " + tree.height());
 		 Iterator<Integer> inOrder = tree.traverse(TreeTraversalOrder.IN_ORDER);
 		 while(inOrder.hasNext()){
 			 System.out.print(" " + inOrder.next());
