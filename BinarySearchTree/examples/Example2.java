@@ -41,7 +41,9 @@ public class Example2{
 	}
 	public static void main(String[] args){
 		int []sortedArray = {1,2,3,4,5,6,7,8,9,10,11,12};
+		System.out.println("Creating binary Search Tree...");
 		int halfIndex =  Math.round(sortedArray.length/2) - 1;
+		System.out.println("The Binary Search Tree traver in In-Order");
 		Example2 ex = new Example2();
 		ex.root = new Node(sortedArray[halfIndex]);
 		ex.insert(sortedArray, ex.root, halfIndex, 2);
