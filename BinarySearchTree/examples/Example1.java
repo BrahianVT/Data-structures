@@ -1,5 +1,5 @@
 /**
-	Given a Binary Tree Determine if is a BST or Not	
+	Given a Binary Tree Determine if a BST  is or Not	
 	I consider tha the binary tree is right when 
 	the following condition is satisfied:	
 	left<= root < right

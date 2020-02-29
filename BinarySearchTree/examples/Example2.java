@@ -1,6 +1,6 @@
 /**
-	Given an sorted array created a binary search tree
-	with the minimum height
+	Given an sorted array create a binary search tree
+	with the minimum posible height
 	@Author:Brahian Velazquez Tellez
 **/
 public class Example2{
@@ -23,10 +23,10 @@ public class Example2{
 	
 	public void insert(int[] sortedArray, Node node , int index,int indexDiff){
 		
-		if(index - indexDiff >=0)add(sortedArray[index - indexDiff]);
+		if(index - indexDiff >= 0)add(sortedArray[index - indexDiff]);
 		if(index + indexDiff < sortedArray.length)add(sortedArray[index + indexDiff]);
 		
-		if(index - indexDiff + 1 >=0)add(sortedArray[index - indexDiff + 1]);
+		if(index - indexDiff + 1 >= 0)add(sortedArray[index - indexDiff + 1]);
 		if(index + indexDiff - 1 < sortedArray.length)add(sortedArray[index + indexDiff - 1]);
 		
 		if(index - indexDiff <= 0 && index + indexDiff >= sortedArray.length -1)return;

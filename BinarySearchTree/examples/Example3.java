@@ -1,5 +1,5 @@
 /*
-	Another example using trees, or binary trees:
+	Another example using trees, or binary search trees:
 	Get the size of a given binary tree
 	Get the highest value in the tree
 	Print the left view of the tree

@@ -1,5 +1,5 @@
 /**
-	Check is all the leaf nodes are in the same level
+	Check if  all the leaf nodes are in the same level
   @Author: Brahian Velazquez Tellez
 */
 public class Example5{
