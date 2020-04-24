@@ -1,5 +1,6 @@
 /**
 	Check if the tree is balanced or not
+	@Author: BrahianVT
 */
 public class Example7{
 	Node root = null;

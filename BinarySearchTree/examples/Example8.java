@@ -1,8 +1,8 @@
 /**
 	Convert binary tree to Sum Binary Tree
 	Explanation: Given a node in the tree sum up all the
-	nodes that has a value greather that the current note
-	and replace with it the data of the current node.
+	nodes that has a value greather that the current node
+	and replace it with the sum of all these nodes.
 	@Author: BrahianVT
 */
 public class Example8{

@@ -193,7 +193,7 @@ public class BSTG <T extends Comparable<T>> {
 			if(node != null){
 				stack2.push(node);
 				if(node.left != null)stack.push(node.left);
-				if(node.right != null)stack2.push(node.right);
+				if(node.right != null)stack.push(node.right);
 			}
 		}
 		return new java.util.Iterator<T>(){
