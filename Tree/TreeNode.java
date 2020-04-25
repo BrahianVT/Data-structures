@@ -1,6 +1,6 @@
 /**
 	Construction of a undirected  tree
-	Operations: add, print, delete
+	Operations: add, print, delete and delete all leaf nodes
    @author Brahian VT
 */
 import java.util.List;
@@ -86,6 +86,7 @@ public class TreeNode<T> {
 		});
 	}
 	
+	// get the root 
 	public TreeNode<T> getRoot(TreeNode<T> node){
 		if(node.getParent() == null)return this;
 		return getRoot(node.getParent());

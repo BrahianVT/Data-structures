@@ -10,7 +10,7 @@ import java.util.TreeSet;
 	This class implements a priority queue using a binaryHeap
 	In this case a min binaryHeap is created.
 	
-	@Autor: Brahian Velazquez Tellez
+	@author :BrahianVT
 */
 public class PriorityQueue <T extends Comparable<T>> {
 	
