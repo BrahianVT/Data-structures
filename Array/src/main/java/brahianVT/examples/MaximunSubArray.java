@@ -37,6 +37,8 @@ public class MaximunSubArray{
 		this.sortedSubArray.clear();
 	}
 	
+	
+	// time complexity: O(nlog(n)) space complexity O(nlog(n))
 	public void printMaximumSubArray(){
 		
 		if(array.length < 0) return;
