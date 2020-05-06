@@ -5,7 +5,7 @@
 
 public class LinkedListD <T> implements Iterable<T>{
 	private int size;
-	private Node<T> head = null, tail = null;
+	public Node<T> head = null, tail = null;
 	
 	// Clear the linked list O(n)
 	public void clear(){
@@ -20,6 +20,8 @@ public class LinkedListD <T> implements Iterable<T>{
 		head = tail = aux = null;
 		size = 0;
 	}
+	
+	public Node<T> getHead(){ return head; }
 	
 	//Return the size
 	public int size(){ return size; }
@@ -242,9 +244,9 @@ public class LinkedListD <T> implements Iterable<T>{
 	}
 	
 	// Internal node class
-	private class Node<T> {
+	public class Node<T> {
 		T data;
-		Node<T> previous = null, next = null;
+		public Node<T> previous = null, next = null;
 	
 		public Node(T data){
 			this.data = data;
