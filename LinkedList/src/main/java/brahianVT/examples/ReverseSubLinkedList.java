@@ -7,8 +7,9 @@
 	Examples:
 	Input: 1->2->3->4->5->NULL, m = 2, n = 4
 	Output: 1->4->3->2->5->NULL
+	
 	Input: 1->2->3->4->5->NULL, m = 1, n = 4
-	Output: 5->4->3->2->1->NULL
+	Output: 4->3->2->1->5->NULL
 	
 	Input: 1->2->3->4->5->NULL, m = 3, n = 4
 	Output: 1->2->4->3->5->NULL
@@ -31,14 +32,14 @@ public class ReverseSubLinkedList {
 		ListNode preNode = null, postNode = null, nodeAtM = null, nodeAtN = null;
 		ListNode iterate = head;
 		
-		// Iterate until n is quals to N
+		// Iterate until n is different from 1
 		while(n != 1){
 			if(m == 2) preNode = iterate;
 			iterate = iterate.next; m--; n--;
 			
 		}
 		// On based of iterate variable(nodeAtN) and preNode find the postNode and nodeAtM elements 
-		if(preNode != null) nodeAtM = nodeAtM = preNode.next;
+		if(preNode != null) nodeAtM = preNode.next;
 		else nodeAtM = head;
 		
 		nodeAtN = iterate;  postNode = iterate.next;
@@ -55,7 +56,7 @@ public class ReverseSubLinkedList {
 		
 		while( aux != nodeAtN){
 			next = aux.next;
-			aux = prev;
+			aux.next = prev;
 			prev = aux;
 			aux = next;
 		}
