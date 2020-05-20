@@ -31,9 +31,34 @@ public class FindMinElement{
 	// first we need to make some stuff when insert and delete in the stack
 	// so I will create 3 methods for add,pop and find min value
 	
-	public void push(int element){}
+	public void push(int element){
+		
+		if(!s.isEmpty()){
+			if( element < minVal){
+				int previousMin = minVal;
+				minVal = element;
+				element = (2 * element) - previousMin;
+			}
+		}else minVal = element;
+		
+		s.push(element);
+	}
 	
-	public int pop(){ return minVal;}
+	public int pop(){ 
+			if(!s.isEmpty()){
+				int topElemet = s.pop();
+				if(topElemet < minVal){
+					int auxMin = minVal;
+					
+					minVal = 2 * minVal - topElemet;
+					topElemet = auxMin;
+				}
+				
+				return topElemet;
+			}
+		return -1;
+		
+		}
 	
-	public int findMin(){return minVal;}
+	public int findMin(){ return s.isEmpty()?-1:minVal; }
 }

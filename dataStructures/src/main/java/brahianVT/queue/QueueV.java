@@ -44,8 +44,7 @@ public class QueueV <T>  implements Iterable <T> {
 			
 			data = auxArray;
 		}
-		data[++ len] = element;
-		
+		data[len++] = element;
 	}
 	// peek get the first Element of the list
 	public T peek (){

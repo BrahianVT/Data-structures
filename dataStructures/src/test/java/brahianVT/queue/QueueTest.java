@@ -50,6 +50,7 @@ public class QueueTest{
 			Integer index = iterar.next();
 			System.out.print(" " + index);
 		}
+		
 		assertEquals(10, queue.peek());
 		
 		assertEquals(10, queue.poll());
