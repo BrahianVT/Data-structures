@@ -15,6 +15,7 @@ class Entry<K,V>{
 	public Entry(K key, V value){
 		this.key = key;
 		this.value = value;
+	//	System.out.println("key.hasHcode: " + key.hashCode());
 		this.hash = key.hashCode();
 	}
 	
@@ -58,6 +59,7 @@ public class HashTableSeparateChaining<K,V>  implements Iterable<K> {
 	// Converts a hash value to an index, this strips the negative sign and 
 	// return a value between [0, capacity]
 	private int normalizeIndex(int keyHash){
+	//	System.out.println("normalizeIndex: " + (keyHash & 0x7FFFFFFF) % capacity);
 		return (keyHash & 0x7FFFFFFF) % capacity;
 	}
 	
@@ -85,6 +87,7 @@ public class HashTableSeparateChaining<K,V>  implements Iterable<K> {
 		
 		Entry<K, V> newEntry = new Entry<>(key, value);
 		int bucketIndex = normalizeIndex(newEntry.hash);
+	//	System.out.println("insert: " + bucketIndex +"  key: "+ newEntry.hash);
 		return bucketInsertEntry(bucketIndex, newEntry);
 	}
 	
@@ -93,6 +96,7 @@ public class HashTableSeparateChaining<K,V>  implements Iterable<K> {
 	public V get(K key){
 		if(key == null) return null;
 		int bucketIndex = normalizeIndex(key.hashCode());
+		//System.out.println("get: " + bucketIndex +"  key: "+ key.hashCode());
 		Entry<K, V> entry = bucketSeekEntry(bucketIndex, key);
 		if(entry != null)return entry.value;
 		return null;
@@ -182,6 +186,7 @@ public class HashTableSeparateChaining<K,V>  implements Iterable<K> {
 	public java.util.Iterator<K> iterator(){
 		final int elementCount = size();
 		return new java.util.Iterator<K>(){
+			
 			int bucketIndex = 0;
 			java.util.Iterator<Entry<K, V>> bucketIter = (table[0] == null)?null:table[0].iterator();
 			@Override public boolean hasNext(){
