@@ -19,7 +19,7 @@ class Entry<K,V>{
 		this.hash = key.hashCode();
 	}
 	
-	// This isn't the equals method defined in the equals method
+	// This isn't the equals method defined in the equals method class
 	public boolean equals(Entry<K, V> other){
 		if(other.hash != hash) return false;
 		return key.equals(other.key);
