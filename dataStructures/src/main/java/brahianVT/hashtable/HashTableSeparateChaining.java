@@ -72,6 +72,8 @@ public class HashTableSeparateChaining<K,V>  implements Iterable<K> {
 		return hasKey(key);
 	}
 	
+	
+	
 	//  If we find a key in the hashTable return true
 	public boolean hasKey(K key){
 		int bucketIndex = normalizeIndex(key.hashCode());
