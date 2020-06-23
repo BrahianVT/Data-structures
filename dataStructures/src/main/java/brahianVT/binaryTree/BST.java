@@ -149,6 +149,17 @@ public class BST{
 	}
 	
 	
+	public void printPreOrder2(){
+		if(root == null)return;
+		Stack<Node> stack  = new Stack<>();
+			stack.push(root);
+			while(!stack.isEmpty()){
+				Node aux = stack.pop();
+				System.out.print( aux.data + " ");
+				if(aux.right != null) stack.push(aux.right);
+				if(aux.left != null) stack.push(aux.left);
+			}
+		}
 	
 	public Node mostLeftNode(Node removeNode){
 		
@@ -185,5 +196,6 @@ public class BST{
 			right = null; left = null;
 		}
 	}	
+   
 }
 
