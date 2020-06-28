@@ -151,8 +151,9 @@ public class BST{
 	
 	public void printPreOrder2(){
 		if(root == null)return;
+		Node iter = root;
 		Stack<Node> stack  = new Stack<>();
-			stack.push(root);
+			stack.push(iter);
 			while(!stack.isEmpty()){
 				Node aux = stack.pop();
 				System.out.print( aux.data + " ");
@@ -161,6 +162,67 @@ public class BST{
 			}
 		}
 	
+	public void printInOrder2(){
+		if(root == null)return;
+		Stack<Node> stack = new Stack<>();
+		Node iter = root;
+		
+		stack.push(iter);
+		
+		while(!stack.isEmpty() || iter != null){
+			if(iter != null){ 
+				stack.push(iter);
+				iter = iter.left;
+			}
+			else{
+				Node aux = stack.pop();
+				System.out.print(aux.data + " ");
+				if(aux.right != null)iter = aux.right;
+			}
+			
+		}
+	}
+	
+	public void printPostOrder2(){
+		if(root == null)return;
+		Stack<Node> stack = new Stack<>();
+		
+		Node iter = root;
+		Node previous = null;
+		stack.push(root);
+		while(!stack.isEmpty() || iter != null){
+			if(iter != null){
+				stack.push(iter);
+				iter = iter.left;
+			}else{
+				Node peek = stack.peek();
+				if(peek.right != null && peek.right != previous)
+					iter = peek.right;
+				else{
+					Node aux = stack.pop();previous = aux;
+					System.out.print(aux.data + " ");
+				}
+			}
+		}
+	}
+	
+	public void printLevelOrder(){
+		if(root == null)return;
+		Queue<Node> queue = new LinkedList<>();
+		
+		Node iter = root;
+		queue.add(iter);
+		while(!queue.isEmpty()){
+			Node aux = queue.remove();
+			
+			
+			System.out.print(" " + aux.data);
+			if(aux.left != null)
+				queue.add(aux.left);
+			if(aux.right != null)
+				queue.add(aux.right);
+		}
+	}
 	public Node mostLeftNode(Node removeNode){
 		
 		Node succesor = null;

@@ -13,7 +13,7 @@ public class Tree<T>{
 	private T data;
 	private Tree<T> parent;
 	private List<Tree<T>> children = new ArrayList<>();
-	private int size;
+	public Tree(){}
 	public Tree(T data){
 		this.data = data;
 	}
@@ -21,28 +21,24 @@ public class Tree<T>{
 	public Tree addChild(Tree child){
 		children.add(child);
 		child.setParent(this);
-		size++;
+		
 		return child;
 	}
 	
 	public void addChildren(List<Tree> children){
 		children.forEach(child -> child.setParent(this));
 		children.addAll(children);
-		size+= children.size();
-		
 	}
 	
 	public void removeChild(){
 		if(getParent() != null){
 			int index = getParent().getChildren().indexOf(this);
-			Tree<T> aux = children.get(index);
 			children.forEach(child -> child.setParent(getParent()));
-			children.remove(index);
+			getParent().getChildren().remove(index);
 			getParent().getChildren().addAll(index, children);
-			aux.setParent(null); aux = null;
+			this.setParent(null);
 		}else removeRootNode();
 		children.clear();
-		size--;
 	}
 	
 	private Tree<T> removeRootNode(){
@@ -51,6 +47,7 @@ public class Tree<T>{
 		
 		if(!children.isEmpty()){
 			newRoot = children.get(0);
+			newRoot.setParent(null);
 			children.remove(0);
 			newRoot.getChildren().addAll(children);
 			for(int i = 0; i < children.size(); i++){
@@ -98,5 +95,4 @@ public class Tree<T>{
 	public void setChildren(List<Tree<T>> children){ this.children = children; }
 	public List<Tree<T>> getChildren(){ return children; }
 	public Tree<T> getParent(){ return parent; }
-	
 }
