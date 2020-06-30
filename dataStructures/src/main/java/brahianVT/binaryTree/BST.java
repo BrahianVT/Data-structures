@@ -6,17 +6,18 @@ import java.util.*;
 */
 
 public class BST{
-	Node root = null;
+	 Node root = null;
 	int size = 0;
 	
 	public boolean find(Integer data){
 		Node iter = root;
 		if(iter == null) return false;
 		
+
 		while(iter != null){
-			if(root.data > data)
+			if(iter.data > data)
 				iter = iter.left;
-			else if(root.data < data)
+			else if(iter.data < data)
 				iter = iter.right;
 			else return true;
 		}
@@ -26,22 +27,23 @@ public class BST{
 	
 	public boolean add(Integer e){
 		Node element = new Node(e);
-		if(root == null){ root = element; return true; }
-		
+		if(root == null){ size++; root = element; return true; }
+	
 		Node iter = root;
 		while(iter != null){
-			if(root.data > e){
-				if(root.left == null){
-					size++;
-					root.left = element; break; 
+			if(iter.data > e){
+				if(iter.left == null){
+					size++; 
+					iter.left = element; return true;
 				}
 				iter = iter.left;
-			} else{
-				if(root.right == null){
+			} else if(iter.data < e){
+				if(iter.right == null){
 					size++;
-					root.right = element; break;					
-			}
-			}
+					iter.right = element; return true;		
+				}
+				iter = iter.right;
+			} else return false;
 			
 		}
 		
@@ -49,7 +51,6 @@ public class BST{
 	}
 	
 	public boolean remove(Integer e){
-		
 		if(root == null)return false;
 		
 		Node iter = root;
@@ -67,8 +68,8 @@ public class BST{
 				iter = iter.right;
 			}
 			
-			if(iter.data == e)break;
 			if(iter == null) return false;
+			if(iter.data == e)break;
 			
 		}
 
@@ -119,6 +120,7 @@ public class BST{
 			
 			iter.right = iter.left = null;
 			
+			if(iter == root) root = succesor;
 			size--;
 			return true; 
 		}
@@ -127,25 +129,25 @@ public class BST{
 	public Node getRoot(){ return root; }
 	
 	
-	public void printPreOrder(){
+	public void printPreOrder(Node root){
 		if(root == null)return;
-		System.out.println(" " + root.data);
-		printPreOrder();
-		printPreOrder();
+		System.out.print(" " + root.data);
+		printPreOrder(root.left);
+		printPreOrder(root.right);
 	}
 
-	public void printInOrder(){
+	public void printInOrder(Node root){
 		if(root == null)return;
-		printInOrder();
-		System.out.println(" " + root.data);
-		printInOrder();
+		printInOrder(root.left);
+		System.out.print(" " + root.data);
+		printInOrder(root.right);
 	}	
 	
-	public void printPostOrder(){
+	public void printPostOrder(Node root){
 		if(root == null)return;
-		printPostOrder();
-		printPostOrder();
-		System.out.println(" " + root.data);
+		printPostOrder(root.left);
+		printPostOrder(root.right);
+		System.out.print(" " + root.data);
 	}
 	
 	
@@ -167,7 +169,6 @@ public class BST{
 		Stack<Node> stack = new Stack<>();
 		Node iter = root;
 		
-		stack.push(iter);
 		
 		while(!stack.isEmpty() || iter != null){
 			if(iter != null){ 
@@ -189,7 +190,6 @@ public class BST{
 		
 		Node iter = root;
 		Node previous = null;
-		stack.push(root);
 		while(!stack.isEmpty() || iter != null){
 			if(iter != null){
 				stack.push(iter);
@@ -232,10 +232,11 @@ public class BST{
 		while(iter != null){
 			
 			parent = iter;
+			
+			succesor = iter;
 			iter = iter.left;
 			
-			if(iter != null)
-				succesor = iter;
+
 		}
 		
 		if(succesor != removeNode.right){
