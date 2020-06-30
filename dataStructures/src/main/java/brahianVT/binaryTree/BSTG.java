@@ -4,7 +4,7 @@ Implementation of a generic Binary search Tree
 
  @author Brahian VT
 */
-
+package brahianVT.binaryTree;
 import java.util.*;
 
 
@@ -24,7 +24,7 @@ public class BSTG< T extends Comparable<T>> {
 	}
 	
 	private Node add(Node root, T ele){
-		if(ele == null) return new Node(ele);
+		if(root == null) return new Node(ele);
 		int cmp = ele.compareTo(root.data);
 		
 		if(cmp > 0)
@@ -72,7 +72,6 @@ public class BSTG< T extends Comparable<T>> {
 				root.data = succesor.data;
 				
 				root.right = remove(root.right, succesor.data);
-				
 			}
 			
 		}
@@ -138,13 +137,13 @@ public class BSTG< T extends Comparable<T>> {
 			public T next(){
 				if(auxSize != size) throw new ConcurrentModificationException();
 				while( iter != null && iter.left != null){
-					stack.push(iter);
+					stack.push(iter.left);
 					iter = iter.left;
 				}
 				
 				Node next = stack.pop();
 				
-				if(next.right != null) iter = next.left;
+				if(next.right != null) { stack.push(next.right); iter = next.right; }
 				return next.data;
 			}
 			
@@ -171,7 +170,7 @@ public class BSTG< T extends Comparable<T>> {
 			public boolean hasNext(){
 				if(auxSize != size) throw new ConcurrentModificationException();
 				
-				return root != null && !stack.isEmpty();
+				return root != null && !stack2.isEmpty();
 			}
 			
 			public T next(){
@@ -182,6 +181,31 @@ public class BSTG< T extends Comparable<T>> {
 			public void remove(){
 				throw new UnsupportedOperationException();
 			}
+		};
+	}
+	
+	public Iterator<T> levelOrderTraversal(){
+		final Queue<Node> queue = new LinkedList<Node>();
+		final int auxSize = size;
+		queue.add(root);
+		
+		return new Iterator<T>(){
+						
+			public boolean hasNext(){
+				if(auxSize != size) throw new ConcurrentModificationException();
+				return root != null &&  !queue.isEmpty();
+				}
+			
+			public T next(){
+				if(auxSize != size) throw new ConcurrentModificationException();
+				Node  next = queue.remove();
+				if( next.left != null) queue.add(next.left);
+				if( next.right != null) queue.add(next.right);
+				
+				return next.data;
+			}
+			
+			public void remove(){ throw new UnsupportedOperationException(); }
 		};
 	}
 	
@@ -211,5 +235,7 @@ public class BSTG< T extends Comparable<T>> {
 		  this.right = null;
 		  this.left = null;
 	  }
+	  
+	  public T getData(){ return data; }
   }	
 }
