@@ -7,8 +7,7 @@ package brahianVT.tree;
  @author Brahian VT	
 */
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 public class Tree<T>{
 	private T data;
 	private Tree<T> parent;
@@ -65,6 +64,33 @@ public class Tree<T>{
 		for(int i = 0; i < node.getChildren().size(); i++){
 			printTree(node.getChildren().get(i), space + " ");
 		}
+	}
+	
+	public void bfs(){
+		
+		Queue<Tree> queue = new LinkedList<Tree>();
+		
+		queue.add(this);
+		
+		while(!queue.isEmpty()){
+			
+			Tree aux = queue.remove();
+			
+			System.out.print(" " + aux.getData());
+			for(int i = 0; i < aux.getChildren().size(); i++){
+				queue.add((Tree<T>)aux.getChildren().get(i));
+			}
+		}
+	}
+	
+	public void dfs(Tree<T> node){
+		if(node == null) return;
+		
+		for(int i = 0; i < node.getChildren().size(); i++){
+			dfs((Tree<T>)node.getChildren().get(i));
+		}
+		
+				System.out.print(" " + node.getData());
 	}
 	
 	
