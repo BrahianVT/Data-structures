@@ -93,4 +93,52 @@ public class TreeTest {
 		assertEquals(null, child2.getParent());
 	
 	}
+	
+	@Test
+	public void bfs(){
+		
+		ByteArrayOutputStream out = null;
+		PrintStream streamTest = System.out;
+		
+		Tree<Integer> root = new Tree(1);
+			
+		Tree<Integer> child1 = root.addChild(new Tree(2));
+		Tree<Integer> child2 = root.addChild(new Tree(3));
+		Tree<Integer> child3 = root.addChild(new Tree(4));
+		Tree<Integer> child4 = child2.addChild(new Tree(5));
+		
+		out = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(out));
+		
+		root.bfs();
+		
+		assertEquals(" 1 2 3 4 5", out.toString());
+		
+		System.setOut(streamTest);
+								
+	}
+	
+	@Test
+	public void dfs(){
+		
+		ByteArrayOutputStream out = null;
+		PrintStream streamTest = System.out;
+		
+		Tree<Integer> root = new Tree(1);
+			
+		Tree<Integer> child1 = root.addChild(new Tree(2));
+		Tree<Integer> child2 = root.addChild(new Tree(3));
+		Tree<Integer> child3 = root.addChild(new Tree(4));
+		Tree<Integer> child4 = child2.addChild(new Tree(5));
+		
+		out = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(out));
+		
+		root.dfs(root);
+		
+		assertEquals(" 2 5 3 4 1", out.toString());
+		
+		System.setOut(streamTest);
+								
+	}
 }
