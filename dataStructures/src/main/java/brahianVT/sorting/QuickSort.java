@@ -30,7 +30,6 @@ public class QuickSort{
 			
 				if(array[j] < pivot){
 					i++;
-					System.out.println(array[i]  + " -  " + array[j] );
 					swap(array, i, j);
 				}
 			}
