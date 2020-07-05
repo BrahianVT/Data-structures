@@ -2,6 +2,11 @@
 package brahianVT.sorting;
 
 
+/**
+	Implementation of mergeSort
+	@author Brahian VT
+*/
+
 public class MergeSort{
 	
 	
@@ -28,7 +33,7 @@ public class MergeSort{
 	private void merge(int[] array, int start, int mid, int end){
 		
 		int leftSize = mid -start +1, rightSize = end- mid;
-		System.out.println(" start: " + start + " end: " + end +" mid: " + mid);
+		//System.out.println(" start: " + start + " end: " + end +" mid: " + mid);
 		
 		int[] left = new int[leftSize]; int[] right = new int[rightSize]; 		
 		
@@ -42,9 +47,9 @@ public class MergeSort{
 		int i = 0, j = 0, k = start;
 	
 		
-		System.out.println("left -" + java.util.Arrays.toString(left));
-		System.out.println("right -" +java.util.Arrays.toString(right));
-		System.out.println("array -"+java.util.Arrays.toString(array));
+		//System.out.println("left -" + java.util.Arrays.toString(left));
+		//System.out.println("right -" +java.util.Arrays.toString(right));
+		//System.out.println("array -"+java.util.Arrays.toString(array));
 		while( i < leftSize && j < rightSize){
 			
 			if(left[i] <= right[j]){
@@ -59,7 +64,7 @@ public class MergeSort{
 		}
 		
 
-		System.out.println(" k: " + k  + "j :" + j + " i: " + i);
+		//System.out.println(" k: " + k  + "j :" + j + " i: " + i);
 		while( i < leftSize){
 			array[k] = left[i];
 			i++; k++;
@@ -70,7 +75,7 @@ public class MergeSort{
 			j++; k++;
 		}
 		
-		System.out.println("array: "+ java.util.Arrays.toString(array) );
+		//System.out.println("array: "+ java.util.Arrays.toString(array) );
 	}
 	
 }
