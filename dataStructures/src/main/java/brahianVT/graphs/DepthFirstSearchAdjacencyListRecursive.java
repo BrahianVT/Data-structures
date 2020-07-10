@@ -12,6 +12,8 @@ import java.util.*;
 
 public class DepthFirstSearchAdjacencyListRecursive{
 		
+	private int size;
+	
 	static class Edge{
 		int from, to, cost;
 		
@@ -32,9 +34,10 @@ public class DepthFirstSearchAdjacencyListRecursive{
 		}
 		
 		list.add(new Edge(from, to, cost));
-		
+		size++;
 	}
 	
+	public int size(){ return size; }
 	public void dfs(int at, boolean[] visited, Map<Integer, List<Edge>> graph){
 		if(visited[at]) return 0L;
 		
