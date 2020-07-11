@@ -12,6 +12,7 @@ import java.util.*;
 public class DepthFirstSearchAdjacencyListIterative{
 		
 	int size;
+	Map<Integer, List<Edge>> graph;
 	static class Edge{
 		int from, to, cost;
 		
@@ -22,24 +23,29 @@ public class DepthFirstSearchAdjacencyListIterative{
 		}
 	}
 	
-	public void dfs(Map<Integer, List<Edge>> graph, int start, int n){
+	public DepthFirstSearchAdjacencyListIterative(){
+		graph = new HashMap<Integer, List<Edge>>();
+	}
+	
+	public void dfs(int start, int n){
 		
 		boolean[] visited = new boolean[n];
 		
 		Stack<Integer> stack = new Stack<>();
 		
 		stack.push(start);
-		
+		visited[start] = true;
+		System.out.print(" " + start);
 		while(!stack.isEmpty()){
 			int node = stack.pop();
 			
 			List<Edge> edges = graph.get(node);
 
 			if(edges != null){
+	
 				for(Edge edge: edges){
 					if(!visited[edge.to]){
-						if(!visited[edge.from])System.out.print(" " + edge.from);
-						
+						System.out.print(" " + edge.to);
 						stack.push(edge.to);
 						visited[edge.to] = true;
 					}
@@ -49,16 +55,30 @@ public class DepthFirstSearchAdjacencyListIterative{
 		}
 	}
 	
-	private void addDirectedEdge(Map<Integer, List<Edge>> graph, int from, int to, int cost){
-		List<Edge> list = graph.get(from);
+	public void addDirectedEdge(int from, int to, int cost){
+		updateSize(from, to);
 		
+		List<Edge> list = graph.get(from);
 		if(list == null){
 			list = new ArrayList<>();
 			graph.put(from, list);
 		}
-		
 		list.add(new Edge(from, to, cost));
-		size++;
+	}
+	
+	private void updateSize(int from, int to){
+		if(!graph.containsKey(from)){
+			size++;
+			
+			outer: 
+			for(Map.Entry<Integer, List<Edge>> entry: graph.entrySet()){
+				for(Edge i : entry.getValue()){
+					if(i.to == to){  size--; break outer; }
+				}
+			}
+			
+			size++;
+		}
 	}
 	
 	public int size(){ return size; }

@@ -2,7 +2,7 @@
 package brahianVT.graphs;
 
 /**
-	An implementation of a  weighted graph recursive approach to DFS 
+	An implementation of a Integer weighted graph recursive approach to DFS 
 	in a 
 	TC: O(V + E)
 	@author Brahian VT
@@ -49,7 +49,7 @@ public class DepthFirstSearchAdjacencyListRecursive{
 			if(!graph.containsKey(to)){
 				for(Map.Entry<Integer, List<Edge>> entry: graph.entrySet()){
 					for(Edge i : entry.getValue()){
-						if(i.to == to) size--;
+						if(i.to == to) { size--; break; }
 					}
 				}
 				size++;
