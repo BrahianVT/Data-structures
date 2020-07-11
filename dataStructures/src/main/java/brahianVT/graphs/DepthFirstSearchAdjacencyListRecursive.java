@@ -13,7 +13,7 @@ import java.util.*;
 public class DepthFirstSearchAdjacencyListRecursive{
 		
 	private int size;
-	
+	private Map<Integer, List<Edge>> graph;
 	static class Edge{
 		int from, to, cost;
 		
@@ -23,35 +23,58 @@ public class DepthFirstSearchAdjacencyListRecursive{
 			this.from = from;
 		}
 	}
-
-	public void addDirectedEdge(Map<Integer, List<Edge>> graph, int from, int to, int cost){
-		
+	
+	
+	public DepthFirstSearchAdjacencyListRecursive(){
+		graph = new HashMap<>();
+	}
+	
+	public void addDirectedEdge(int from, int to, int cost){
+		updateSize(from, to);
 		List<Edge> list = graph.get(from);
-		
 		if(list == null){
 			list = new ArrayList<>();
 			graph.put(from, list);
 		}
-		
 		list.add(new Edge(from, to, cost));
-		size++;
+		
+
 	}
 	
+	
+	private void updateSize(int from, int to){
+		// First Check it the elements are already in the list
+		if(!graph.containsKey(from)){ 
+			size++;
+			if(!graph.containsKey(to)){
+				for(Map.Entry<Integer, List<Edge>> entry: graph.entrySet()){
+					for(Edge i : entry.getValue()){
+						if(i.to == to) size--;
+					}
+				}
+				size++;
+			}
+		}		
+		
+	}
 	public int size(){ return size; }
-	public void dfs(int at, boolean[] visited, Map<Integer, List<Edge>> graph){
-		if(visited[at]) return ;
+	
+	public void dfs(int at, boolean[] visited){
+		if(visited[at]) return;
 		
 		visited[at] = true;
 		
-		
 		List<Edge> edges = graph.get(at);
-		
+
 
 		if(edges != null){
+			System.out.print(" " + edges.get(0).from);
 			for(Edge edge: edges){
-				System.out.print(" " + edge.from);
-				dfs(edge.to, visited, graph);
+				dfs(edge.to, visited);
 			}
+		}else{
+			// if the at variable is not a key that means is a to 
+			System.out.print(" " + at);
 		}
 	}
 	
