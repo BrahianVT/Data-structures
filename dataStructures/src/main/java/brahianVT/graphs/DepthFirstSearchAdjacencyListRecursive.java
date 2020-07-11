@@ -39,7 +39,7 @@ public class DepthFirstSearchAdjacencyListRecursive{
 	
 	public int size(){ return size; }
 	public void dfs(int at, boolean[] visited, Map<Integer, List<Edge>> graph){
-		if(visited[at]) return 0L;
+		if(visited[at]) return ;
 		
 		visited[at] = true;
 		
