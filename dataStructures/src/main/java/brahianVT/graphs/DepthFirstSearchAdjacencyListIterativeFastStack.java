@@ -19,6 +19,7 @@ import java.util.*;
 */
 public class DepthFirstSearchAdjacencyListIterativeFastStack{
 
+	Map<Integer, List<Edge>> graph;
 	class IntStack{
 		private int[] ar;
 		private int pos = 0, sz;
@@ -52,25 +53,25 @@ public class DepthFirstSearchAdjacencyListIterativeFastStack{
 				this.cost = cost;
 			}
 		}
-	
-	public void dfs(Map<Integer, List<Edge>> graph, int start, int n){
+	public DepthFirstSearchAdjacencyListIterativeFastStack(){
+		graph = new HashMap<Integer, List<Edge>>();
+	}
+	public void dfs(int start, int n){
 		boolean[] visited = new boolean[n];
 		IntStack stack = new IntStack(n);
 		
 		stack.push(start);
-		
+		System.out.print(" "+ start);
 		while(!stack.isEmpty()){
 			int node = stack.pop();
 			
 			if(!visited[node]){
-				
-
 				visited[node] = true;
 				List<Edge> edges = graph.get(node);
 				if(edges != null){
-					System.out.print(" "+ edges.get(0).from);
 					for(Edge edge: edges){
 						if( !visited[edge.to]){
+							System.out.print(" "+ edge.to);
 							stack.push(edge.to);
 						}
 					}
@@ -79,7 +80,7 @@ public class DepthFirstSearchAdjacencyListIterativeFastStack{
 		}
 	}
 	
-	private void addDirectedEdge(Map<Integer, List<Edge>> graph, int from, int to, int cost){
+	public void addDirectedEdge(int from, int to, int cost){
 		List<Edge> list = graph.get(from);
 		
 		if(list == null){
@@ -89,5 +90,6 @@ public class DepthFirstSearchAdjacencyListIterativeFastStack{
 		
 		list.add(new Edge(from, to, cost));
 	}
+	
 	
 }
