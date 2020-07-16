@@ -13,7 +13,7 @@ import java.util.*;
 public class BreadthFirstSearchRecursive{
 		
 		
-	static Edge(){
+	static class Edge{
 		int from, to, cost;
 		
 		public Edge(int from, int to, int cost){
@@ -25,6 +25,9 @@ public class BreadthFirstSearchRecursive{
 	
 	private List<List<Integer>> graph;
 	
+	public BreadthFirstSearchRecursive(int n){
+		for (int i = 0; i < n; i++) graph.add(new ArrayList<>());
+	}
 	public static int DEPH_TOKEN = -1;
 	
 	public void bfs(int start, int n){
@@ -36,7 +39,7 @@ public class BreadthFirstSearchRecursive{
 		 bfs(visited, queue);
 	}
 	
-	private bfs (boolean[] visited, Queue<Integer> queue){
+	private void bfs (boolean[] visited, Queue<Integer> queue){
 		
 		int at = queue.poll();
 		

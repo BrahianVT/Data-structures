@@ -30,11 +30,12 @@ public class BreadthFirstSearchAdjacencyListIterative{
 	// initialize an empty adjacency list that can hold up to n nodes
 		
 	public void createEmptyGraph(int n){
-		List<List<Edge>> graph = new ArrayList<>(n);
-			
+		
+		graph = new ArrayList<>();
+		this.n = n;	
+		
 		for(int i = 0; i < n; i++)graph.add(new ArrayList<>());
-			
-		return graph;
+		
 	}
 	
 	public void addDirectedEdge(int u, int v, int cost){
@@ -47,7 +48,7 @@ public class BreadthFirstSearchAdjacencyListIterative{
 		
 	}
 	
-	public void addUnweigtedUndirectedEdge(int u, int v){
+	public void addUnweightedUndirectedEdge(int u, int v){
 		addUndirectedEdge(u, v, 1);
 	}
 	
@@ -55,6 +56,7 @@ public class BreadthFirstSearchAdjacencyListIterative{
 	// Breadth first search on a graph 
 
 	public void dfs(int start){
+		
 		prev = new Integer[n];
 		boolean[] visited = new boolean[n];
 		

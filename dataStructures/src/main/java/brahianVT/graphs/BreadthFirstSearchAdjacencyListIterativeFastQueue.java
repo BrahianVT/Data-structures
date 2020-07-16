@@ -28,10 +28,11 @@ public class BreadthFirstSearchAdjacencyListIterativeFastQueue{
 		private int front, end, sz;
 		
 		public IntQueue(int  sz){
+			
 			front = end = 0;
 			this.sz = sz + 1;
 			
-			ar = new int[sz];
+			ar = new int[this.sz];
 		}
 		
 		public boolean isEmpty(){ return front == end; }
@@ -43,9 +44,8 @@ public class BreadthFirstSearchAdjacencyListIterativeFastQueue{
 		public void enqueue(int value){
 			
 			ar[end] = value;
-			
 			if(++end == sz) end = 0;
-			if(end == front) throw new RuntimeErrorException("Queue too small!");
+			if(end == front) throw new RuntimeException("Queue too small!");
 		}
 		
 		public int dequeue(){
@@ -53,8 +53,9 @@ public class BreadthFirstSearchAdjacencyListIterativeFastQueue{
 			if(++front == sz) front = 0;
 			return res;
 		}
+	}
 		
-		static Edge {
+		static class Edge {
 			int from, to, cost;
 			
 			public Edge(int from, int to, int cost){
@@ -65,8 +66,7 @@ public class BreadthFirstSearchAdjacencyListIterativeFastQueue{
 		}
 		
 		
-		public int bfs(int start, int n){
-			
+		public void bfs(int start, int n){
 			boolean[] visited = new boolean[n];
 			IntQueue queue = new IntQueue( n + 1);
 			
@@ -80,11 +80,11 @@ public class BreadthFirstSearchAdjacencyListIterativeFastQueue{
 			while(true){
 				Integer node = queue.dequeue();
 				
-				// if we find a  depth token tjis means that we have finished the current
+				// if we find a  depth token this means that we have finished the current
 				// layer and are about to start the new layer 
 				
-				if(node = DEPH_TOKEN){
-					if(queue.isEmpty()) break:
+				if(node == DEPH_TOKEN){
+					if(queue.isEmpty()) break;
 					
 					// add another DEPH_TOKEN
 					queue.enqueue(DEPH_TOKEN);
@@ -116,11 +116,8 @@ public class BreadthFirstSearchAdjacencyListIterativeFastQueue{
 				graph.put(from, list);
 			}
 			
-			list.add(new Edge(from, tom cost));
+			list.add(new Edge(from, to, cost));
 		}
 		
 		
 	}
-	
-	
-}
