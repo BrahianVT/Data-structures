@@ -55,8 +55,34 @@ public class BreadthFirstSearchAdjacencyListIterative{
 		
 	// Breadth first search on a graph 
 
-	public void dfs(int start){
+	public void bfs(int start){
+		boolean[] visited = new boolean[n];
 		
+		Deque<Integer> queue = new ArrayDeque<>(n);
+		
+		queue.offer(start);
+		
+		visited[start] = true;
+		
+		while(!queue.isEmpty()){
+			int node = queue.poll();
+			
+
+			System.out.print(" " + node);
+			List<Edge> edges = graph.get(node);
+			
+			if(edges != null){
+				for(Edge edge: edges){
+					if(!visited[edge.to]){
+						queue.offer(edge.to);
+						visited[edge.to] = true;
+					}
+				}
+			}
+		}
+	}
+	
+	public void bfsReconstruct(int start){	
 		prev = new Integer[n];
 		boolean[] visited = new boolean[n];
 		
@@ -69,13 +95,10 @@ public class BreadthFirstSearchAdjacencyListIterative{
 		while(!queue.isEmpty()){
 			int node = queue.poll();
 			
-			
-			System.out.print(" " + node);
 			List<Edge> edges = graph.get(node);
 			
 			if(edges != null){
 				for(Edge edge: edges){
-					
 					if(!visited[edge.to]){
 						queue.offer(edge.to);
 						visited[edge.to] = true;
@@ -84,8 +107,27 @@ public class BreadthFirstSearchAdjacencyListIterative{
 				}
 			}
 		}
-	}
 		
+	}	
+	/* Reconstruct the path  from start to end inclusive. If the edges are unweighted	
+	   then this method return the shortest path from start to end.
+	   
+	   if start and end are not connected then an empty array is returned
+	   
+	*/
+	
+	public List<Integer> reconstructPath(int start, int end){
+		
+		bfsReconstruct(start);
+		List<Integer> path = new ArrayList<>();
+		for(Integer at = end; at!= null; at = prev[at])
+			path.add(at);
+		Collections.reverse(path);
+		if(path.get(0) == start) return path;
+		path.clear();
+		
+		return path;
+	}
 	public String formatPath(List<Integer> path){
 		return String.join(
 			" -> ", path.stream().map(Object::toString).collect(java.util.stream.Collectors.toList())	
