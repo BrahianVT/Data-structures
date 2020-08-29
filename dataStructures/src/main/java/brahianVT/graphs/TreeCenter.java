@@ -13,7 +13,7 @@ import java.util.*;
 public class TreeCenter	{
 
 	public static List<Integer> findTreeCenter( List<List<Integer>> tree){
-		final int = n = tree.size();
+		final int n = tree.size();
 		int[] degree = new int[n];
 		
 		List<Integer> leaves = new ArrayList<>();
