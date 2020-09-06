@@ -3,7 +3,6 @@ package brahianVT.graphs;
 
 import brahianVT.graphs.LowestCommonAncestorEulerTour;
 import static brahianVT.graphs.LowestCommonAncestorEulerTour.*;
-//import brahianVT.graphs.LowestCommonAncestorEulerTour.MinSparseTable.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
